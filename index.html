@@ -66,11 +66,6 @@
       transition: all 0.3s;
     }
 
-    .navbar .navbar-brand {
-      color: #04AA6D;
-      font-weight: bold;
-    }
-
     /* Content */
     .content {
       margin-left: 230px;
@@ -106,22 +101,7 @@
     .badge.bg-success { background-color: #04AA6D; }
     .badge.bg-warning { background-color: #ff9800; }
     .badge.bg-danger { background-color: #f44336; }
-
-    /* Mobile adjustments */
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
-      .content {
-        margin-left: 0;
-        padding: 15px;
-      }
-      .navbar {
-        margin-left: 0;
-      }
-    }
+    
   </style>
 </head>
 
@@ -134,12 +114,10 @@
     <a href="#dashboard"><i class="bi bi-speedometer2"></i> Dashboard</a>
     <a href="#checkin"><i class="bi bi-clock"></i> Check In / Out</a>
     <a href="#history"><i class="bi bi-calendar"></i> Attendance History</a>
-    <a href="#profile"><i class="bi bi-person"></i> Profile</a>
 
     <hr />
 
     <p class="px-3 text-muted small">ADMIN</p>
-    <!-- Removed separate admin dashboard -->
     <a href="#users"><i class="bi bi-people"></i> User Management</a>
     <a href="#monitoring"><i class="bi bi-table"></i> Attendance Monitoring</a>
     <a href="#reports"><i class="bi bi-file-earmark-bar-graph"></i> Reports</a>
@@ -147,14 +125,51 @@
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-light bg-white shadow-sm">
-    <div class="container-fluid">
-      <span class="navbar-brand">Attendance System</span>
-      <span>Admin</span>
+    <div class="container-fluid d-flex justify-content-end">
+
+      <!-- PROFILE DROPDOWN -->
+      <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle d-flex align-items-center"
+                data-bs-toggle="dropdown">
+          <i class="bi bi-person-circle me-2"></i>
+          Admin
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+
+          <li>
+            <button class="dropdown-item"
+                    data-bs-toggle="modal"
+                    data-bs-target="#profileModal">
+              <i class="bi bi-person me-2"></i> Profile
+            </button>
+          </li>
+
+          <li>
+            <button class="dropdown-item"
+                    data-bs-toggle="modal"
+                    data-bs-target="#changePasswordModal">
+              <i class="bi bi-key me-2"></i> Change Password
+            </button>
+          </li>
+
+          <li><hr class="dropdown-divider"></li>
+
+          <li>
+            <a class="dropdown-item text-danger" href="#">
+              <i class="bi bi-box-arrow-right me-2"></i> Logout
+            </a>
+          </li>
+
+        </ul>
+      </div>
+
     </div>
   </nav>
 
   <!-- CONTENT -->
   <div class="content">
+
     <!-- DASHBOARD -->
     <section id="dashboard" class="mb-5">
       <h4 class="mb-4">Dashboard</h4>
@@ -229,30 +244,6 @@
               </tr>
             </tbody>
           </table>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROFILE -->
-    <section id="profile" class="mb-5">
-      <h4 class="mb-4">Profile</h4>
-      <div class="card shadow">
-        <div class="card-body">
-          <form>
-            <div class="mb-3">
-              <label>Name</label>
-              <input class="form-control" />
-            </div>
-            <div class="mb-3">
-              <label>Email</label>
-              <input class="form-control" />
-            </div>
-            <div class="mb-3">
-              <label>Password</label>
-              <input type="password" class="form-control" />
-            </div>
-            <button class="btn btn-primary">Update Profile</button>
-          </form>
         </div>
       </div>
     </section>
@@ -346,6 +337,70 @@
         </div>
       </div>
     </section>
+
+  </div>
+
+  <!-- PROFILE MODAL -->
+  <div class="modal fade" id="profileModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">My Profile</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label>Name</label>
+              <input class="form-control" />
+            </div>
+            <div class="mb-3">
+              <label>Email</label>
+              <input class="form-control" />
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHANGE PASSWORD MODAL -->
+  <div class="modal fade" id="changePasswordModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Change Password</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label>New Password</label>
+              <input type="password" class="form-control" />
+            </div>
+
+            <div class="mb-3">
+              <label>Confirm New Password</label>
+              <input type="password" class="form-control" />
+            </div>
+          </form>
+        </div>
+
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary">Update Password</button>
+        </div>
+
+      </div>
+    </div>
   </div>
 
   <!-- ADD USER MODAL -->
@@ -370,5 +425,6 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
