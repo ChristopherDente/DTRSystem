@@ -10,142 +10,184 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
 
   <style>
-    body { font-family: Arial, sans-serif; background: #f1f1f1; margin: 0; }
+    body { font-family: Arial, sans-serif; background: #f1f1f1; }
 
-    /* Sidebar */
-    .sidebar {
-      position: fixed;
-      width: 230px;
-      height: 100%;
-      background: #ffffff;
-      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-      padding-top: 20px;
-      z-index: 1000;
-      transition: all 0.3s;
+    /* Sidebar hover effect */
+    .sidebar a:hover,
+    .offcanvas a:hover {
+      background-color: #04AA6D !important;
+      color: #fff !important;
+      border-radius: 0.5rem;
     }
-    .sidebar h5 { text-align: center; font-weight: bold; color: #04AA6D; margin-bottom: 20px; }
-    .sidebar a { display: block; color: #000; padding: 10px 20px; text-decoration: none; font-size: 14px; }
-    .sidebar a:hover { background-color: #f1f1f1; color: #04AA6D; }
-    .sidebar .small { padding-left: 20px; color: #555; font-size: 12px; text-transform: uppercase; margin-top: 10px; }
 
-    /* Navbar */
-    .navbar { margin-left: 230px; background: #ffffff; border-bottom: 1px solid #ccc; transition: all 0.3s; }
-
-    /* Content */
-    .content { margin-left: 230px; padding: 25px; transition: all 0.3s; }
-    .card { border-radius: 6px; background: #fff; border: 1px solid #ddd; }
-    table.table-bordered th, table.table-bordered td { border: 1px solid #ddd; }
-    table.table-striped tbody tr:nth-of-type(odd) { background-color: #f9f9f9; }
-
-    .btn-primary { background-color: #04AA6D; border-color: #04AA6D; }
-    .btn-primary:hover { background-color: #039e63; border-color: #039e63; }
-
-    .btn-success { background-color: #04AA6D; border-color: #04AA6D; }
-    .btn-success:hover { background-color: #039e63; border-color: #039e63; }
-
-    .btn-danger { background-color: #f44336; border-color: #f44336; }
-    .btn-danger:hover { background-color: #d7372a; border-color: #d7372a; }
-
-    .badge.bg-success { background-color: #04AA6D; }
-    .badge.bg-warning { background-color: #ff9800; }
-    .badge.bg-danger { background-color: #f44336; }
+    /* Sidebar padding */
+    .sidebar {
+      padding: 10px;
+    }
+    .sidebar a {
+      margin-bottom: 0.5rem;
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      color: #000;
+      text-decoration: none;
+      display: block;
+      font-weight: 500;
+    }
+    .offcanvas-body a {
+      margin-bottom: 0.5rem;
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      color: #000;
+      text-decoration: none;
+      display: block;
+      font-weight: 500;
+    }
   </style>
 </head>
-<body>
+<body class="bg-light">
 
-  <!-- SIDEBAR -->
-  <div class="sidebar">
-    <h5 class="text-center mt-3 mb-4">Attendance</h5>
+  <div class="d-flex">
 
-    <p class="px-3 text-muted small">STAFF</p>
-    <a href="#checkin"><i class="bi bi-clock"></i> Check In / Out</a>
-    <a href="#history"><i class="bi bi-calendar"></i> Attendance History</a>
-  </div>
-
-  <!-- NAVBAR -->
-  <nav class="navbar navbar-light bg-white shadow-sm">
-    <div class="container-fluid d-flex justify-content-end">
-      <!-- PROFILE DROPDOWN -->
-      <div class="dropdown">
-        <button class="btn btn-light dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-          <i class="bi bi-person-circle me-2"></i> Staff
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow">
-          <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i> Profile</button></li>
-          <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="bi bi-key me-2"></i> Change Password</button></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
-        </ul>
+    <!-- OFFCANVAS SIDEBAR (mobile) -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title text-success fw-bold">Attendance</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body p-0">
+        <p class="px-3 text-muted small text-uppercase mb-2">STAFF</p>
+        <a href="#dashboard" data-bs-dismiss="offcanvas"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+        <a href="#checkin" data-bs-dismiss="offcanvas"><i class="bi bi-clock me-2"></i> Time In / Time Out</a>
+        <a href="#history" data-bs-dismiss="offcanvas"><i class="bi bi-calendar me-2"></i> Attendance History</a>
       </div>
     </div>
-  </nav>
 
-  <!-- CONTENT -->
-  <div class="content">
+    <!-- SIDEBAR (desktop) -->
+    <div class="d-none d-md-flex flex-column flex-shrink-0 bg-white shadow-sm sidebar" style="width: 250px; height: 100vh;">
+      <h5 class="text-center mt-3 mb-4 text-success fw-bold">Attendance</h5>
+      <p class="text-muted small text-uppercase mb-2 px-3">STAFF</p>
+      <a href="#dashboard"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
+      <a href="#checkin"><i class="bi bi-clock me-2"></i> Time In / Time Out</a>
+      <a href="#history"><i class="bi bi-calendar me-2"></i> Attendance History</a>
+    </div>
 
-    <!-- CHECK IN / CHECK OUT -->
-    <section id="checkin" class="mb-5">
-      <h4 class="mb-4">Check In / Check Out</h4>
-      <div class="card shadow text-center">
-        <div class="card-body">
-          <button class="btn btn-success btn-lg w-100 mb-3">Check In</button>
-          <button class="btn btn-danger btn-lg w-100">Check Out</button>
+    <!-- MAIN CONTENT -->
+    <div class="flex-grow-1">
+
+      <!-- NAVBAR -->
+      <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm border-bottom">
+        <div class="container-fluid">
+
+          <!-- MOBILE TOGGLE BUTTON -->
+          <button class="btn btn-light d-md-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+            <i class="bi bi-list"></i>
+          </button>
+
+          <div class="ms-auto dropdown">
+            <button class="btn btn-light dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle me-2"></i> Staff
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end shadow">
+              <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i> Profile</button></li>
+              <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="bi bi-key me-2"></i> Change Password</button></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+            </ul>
+          </div>
+
         </div>
-      </div>
-    </section>
+      </nav>
 
-    <!-- ATTENDANCE HISTORY -->
-    <section id="history" class="mb-5">
-      <h4 class="mb-4">Attendance History</h4>
-      <div class="card shadow">
-        <div class="card-body">
-          <table class="table table-bordered table-striped">
-            <thead class="table-light">
-              <tr>
-                <th>Date</th>
-                <th>Check In</th>
-                <th>Check Out</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>March 10</td>
-                <td>08:30 AM</td>
-                <td>05:05 PM</td>
-                <td><span class="badge bg-success">Present</span></td>
-              </tr>
-              <tr>
-                <td>March 9</td>
-                <td>08:55 AM</td>
-                <td>05:02 PM</td>
-                <td><span class="badge bg-warning">Late</span></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+      <!-- CONTENT -->
+      <div class="p-4">
 
+        <!-- DASHBOARD SECTION -->
+        <section id="dashboard" class="mb-5">
+          <h4 class="mb-4 fw-bold text-secondary">Dashboard</h4>
+          <div class="card shadow-sm rounded-4 p-3 text-center">
+            <p class="mb-0">Welcome to your staff dashboard!</p>
+          </div>
+        </section>
+
+        <!-- TIME IN / TIME OUT -->
+        <section id="checkin" class="mb-5">
+          <h4 class="mb-4 fw-bold text-secondary">Time In / Time Out</h4>
+          <div class="card shadow-sm rounded-4">
+            <div class="card-body d-flex gap-3 justify-content-center flex-wrap">
+              <button class="btn btn-success btn-lg rounded-pill fw-semibold flex-fill">Time In</button>
+              <button class="btn btn-danger btn-lg rounded-pill fw-semibold flex-fill">Time Out</button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ATTENDANCE HISTORY -->
+        <section id="history" class="mb-5">
+          <h4 class="mb-4 fw-bold text-secondary">Attendance History</h4>
+          <div class="card shadow-sm rounded-4 bg-white">
+            <div class="card-body p-3">
+              <div class="table-responsive">
+                <table class="table table-hover table-striped table-bordered mb-0 align-middle text-center">
+                  <thead>
+                    <tr>
+                      <th class="fw-semibold bg-success text-white">Date</th>
+                      <th class="fw-semibold bg-success text-white">Time In</th>
+                      <th class="fw-semibold bg-success text-white">Time Out</th>
+                      <th class="fw-semibold bg-success text-white">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>March 10</td>
+                      <td>08:30 AM</td>
+                      <td>05:05 PM</td>
+                      <td><span class="badge bg-success rounded-pill"><i class="bi bi-check-circle me-1"></i>Present</span></td>
+                    </tr>
+                    <tr>
+                      <td>March 9</td>
+                      <td>08:55 AM</td>
+                      <td>05:02 PM</td>
+                      <td><span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-exclamation-circle me-1"></i>Late</span></td>
+                    </tr>
+                    <tr>
+                      <td>March 8</td>
+                      <td>—</td>
+                      <td>—</td>
+                      <td><span class="badge bg-danger rounded-pill"><i class="bi bi-x-circle me-1"></i>Absent</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
   </div>
 
   <!-- MODALS -->
   <div class="modal fade" id="profileModal">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content rounded-4 shadow-sm">
         <div class="modal-header">
-          <h5 class="modal-title">My Profile</h5>
+          <h5 class="modal-title fw-bold">My Profile</h5>
           <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="mb-3"><label>Name</label><input class="form-control" /></div>
-            <div class="mb-3"><label>Email</label><input class="form-control" /></div>
+          <form class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold">Name</label>
+              <input class="form-control rounded-pill" placeholder="Enter your name" />
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Email</label>
+              <input class="form-control rounded-pill" placeholder="Enter your email" />
+            </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary">Save Changes</button>
+          <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary rounded-pill">Save Changes</button>
         </div>
       </div>
     </div>
@@ -153,20 +195,26 @@
 
   <div class="modal fade" id="changePasswordModal">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content rounded-4 shadow-sm">
         <div class="modal-header">
-          <h5 class="modal-title">Change Password</h5>
+          <h5 class="modal-title fw-bold">Change Password</h5>
           <button class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <form>
-            <div class="mb-3"><label>New Password</label><input type="password" class="form-control" /></div>
-            <div class="mb-3"><label>Confirm New Password</label><input type="password" class="form-control" /></div>
+          <form class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold">New Password</label>
+              <input type="password" class="form-control rounded-pill" placeholder="Enter new password" />
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Confirm New Password</label>
+              <input type="password" class="form-control rounded-pill" placeholder="Confirm new password" />
+            </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary">Update Password</button>
+          <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary rounded-pill">Update Password</button>
         </div>
       </div>
     </div>
