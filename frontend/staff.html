@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Staff Dashboard - Attendance Management</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+  <style>
+    body { font-family: Arial, sans-serif; background: #f1f1f1; margin: 0; }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      width: 230px;
+      height: 100%;
+      background: #ffffff;
+      box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+      padding-top: 20px;
+      z-index: 1000;
+      transition: all 0.3s;
+    }
+    .sidebar h5 { text-align: center; font-weight: bold; color: #04AA6D; margin-bottom: 20px; }
+    .sidebar a { display: block; color: #000; padding: 10px 20px; text-decoration: none; font-size: 14px; }
+    .sidebar a:hover { background-color: #f1f1f1; color: #04AA6D; }
+    .sidebar .small { padding-left: 20px; color: #555; font-size: 12px; text-transform: uppercase; margin-top: 10px; }
+
+    /* Navbar */
+    .navbar { margin-left: 230px; background: #ffffff; border-bottom: 1px solid #ccc; transition: all 0.3s; }
+
+    /* Content */
+    .content { margin-left: 230px; padding: 25px; transition: all 0.3s; }
+    .card { border-radius: 6px; background: #fff; border: 1px solid #ddd; }
+    table.table-bordered th, table.table-bordered td { border: 1px solid #ddd; }
+    table.table-striped tbody tr:nth-of-type(odd) { background-color: #f9f9f9; }
+
+    .btn-primary { background-color: #04AA6D; border-color: #04AA6D; }
+    .btn-primary:hover { background-color: #039e63; border-color: #039e63; }
+
+    .btn-success { background-color: #04AA6D; border-color: #04AA6D; }
+    .btn-success:hover { background-color: #039e63; border-color: #039e63; }
+
+    .btn-danger { background-color: #f44336; border-color: #f44336; }
+    .btn-danger:hover { background-color: #d7372a; border-color: #d7372a; }
+
+    .badge.bg-success { background-color: #04AA6D; }
+    .badge.bg-warning { background-color: #ff9800; }
+    .badge.bg-danger { background-color: #f44336; }
+  </style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h5 class="text-center mt-3 mb-4">Attendance</h5>
+
+    <p class="px-3 text-muted small">STAFF</p>
+    <a href="#checkin"><i class="bi bi-clock"></i> Check In / Out</a>
+    <a href="#history"><i class="bi bi-calendar"></i> Attendance History</a>
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-light bg-white shadow-sm">
+    <div class="container-fluid d-flex justify-content-end">
+      <!-- PROFILE DROPDOWN -->
+      <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
+          <i class="bi bi-person-circle me-2"></i> Staff
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow">
+          <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i> Profile</button></li>
+          <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="bi bi-key me-2"></i> Change Password</button></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <div class="content">
+
+    <!-- CHECK IN / CHECK OUT -->
+    <section id="checkin" class="mb-5">
+      <h4 class="mb-4">Check In / Check Out</h4>
+      <div class="card shadow text-center">
+        <div class="card-body">
+          <button class="btn btn-success btn-lg w-100 mb-3">Check In</button>
+          <button class="btn btn-danger btn-lg w-100">Check Out</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ATTENDANCE HISTORY -->
+    <section id="history" class="mb-5">
+      <h4 class="mb-4">Attendance History</h4>
+      <div class="card shadow">
+        <div class="card-body">
+          <table class="table table-bordered table-striped">
+            <thead class="table-light">
+              <tr>
+                <th>Date</th>
+                <th>Check In</th>
+                <th>Check Out</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>March 10</td>
+                <td>08:30 AM</td>
+                <td>05:05 PM</td>
+                <td><span class="badge bg-success">Present</span></td>
+              </tr>
+              <tr>
+                <td>March 9</td>
+                <td>08:55 AM</td>
+                <td>05:02 PM</td>
+                <td><span class="badge bg-warning">Late</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MODALS -->
+  <div class="modal fade" id="profileModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">My Profile</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3"><label>Name</label><input class="form-control" /></div>
+            <div class="mb-3"><label>Email</label><input class="form-control" /></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-primary">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="changePasswordModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Change Password</h5>
+          <button class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3"><label>New Password</label><input type="password" class="form-control" /></div>
+            <div class="mb-3"><label>Confirm New Password</label><input type="password" class="form-control" /></div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary">Update Password</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
