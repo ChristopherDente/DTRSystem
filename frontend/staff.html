@@ -4,155 +4,136 @@
   <meta charset="UTF-8" />
   <title>Staff Dashboard - Attendance Management</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-
+  <link href="assets/css/styles.css" rel="stylesheet">
   <style>
-    body { font-family: Arial, sans-serif; background: #f1f1f1; }
-
-    /* Sidebar hover effect */
-    .sidebar a:hover,
-    .offcanvas a:hover {
-      background-color: #04AA6D !important;
-      color: #fff !important;
-      border-radius: 0.5rem;
-    }
-
-    /* Sidebar padding */
-    .sidebar {
-      padding: 10px;
-    }
-    .sidebar a {
-      margin-bottom: 0.5rem;
-      padding: 0.6rem 1rem;
-      border-radius: 0.5rem;
-      color: #000;
-      text-decoration: none;
-      display: block;
-      font-weight: 500;
-    }
-    .offcanvas-body a {
-      margin-bottom: 0.5rem;
-      padding: 0.6rem 1rem;
-      border-radius: 0.5rem;
-      color: #000;
-      text-decoration: none;
-      display: block;
-      font-weight: 500;
-    }
+    .sidebar { width: 250px; height: calc(100vh - 56px); position: sticky; top: 56px; }
+    .sidebar-link { padding: 0.5rem 1rem; color: #495057; border-radius: 0.375rem; transition: background-color 0.15s, color 0.15s; text-decoration: none; display: block; }
+    .sidebar-link:hover, .sidebar-link.active { background-color: #e9ecef; color: #198754; font-weight: 500; }
   </style>
 </head>
 <body class="bg-light">
 
-  <div class="d-flex">
+  <!-- TOP NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm fixed-top">
+    <div class="container-fluid">
+      <!-- Mobile Sidebar Toggle -->
+      <button class="btn btn-outline-secondary d-md-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+        <i class="bi bi-list"></i>
+      </button>
+      
+      <a class="navbar-brand text-success fw-bold me-auto" href="#">Attendance System</a>
 
-    <!-- OFFCANVAS SIDEBAR (mobile) -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title text-success fw-bold">Attendance</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
-      </div>
-      <div class="offcanvas-body p-0">
-        <p class="px-3 text-muted small text-uppercase mb-2">STAFF</p>
-        <a href="#dashboard" data-bs-dismiss="offcanvas"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
-        <a href="#checkin" data-bs-dismiss="offcanvas"><i class="bi bi-clock me-2"></i> Time In / Time Out</a>
-        <a href="#history" data-bs-dismiss="offcanvas"><i class="bi bi-calendar me-2"></i> Attendance History</a>
+      <!-- Profile Dropdown -->
+      <div class="dropdown">
+        <button class="btn btn-light dropdown-toggle d-flex align-items-center rounded-pill border" type="button" data-bs-toggle="dropdown">
+          <i class="bi bi-person-circle text-success me-2"></i> <span>Staff</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end shadow-sm border-0 position-absolute">
+          <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i> Profile</button></li>
+          <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="bi bi-key me-2"></i> Change Password</button></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item text-danger" href="login.html"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+        </ul>
       </div>
     </div>
+  </nav>
 
-    <!-- SIDEBAR (desktop) -->
-    <div class="d-none d-md-flex flex-column flex-shrink-0 bg-white shadow-sm sidebar" style="width: 250px; height: 100vh;">
-      <h5 class="text-center mt-3 mb-4 text-success fw-bold">Attendance</h5>
-      <p class="text-muted small text-uppercase mb-2 px-3">STAFF</p>
-      <a href="#dashboard"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a>
-      <a href="#checkin"><i class="bi bi-clock me-2"></i> Time In / Time Out</a>
-      <a href="#history"><i class="bi bi-calendar me-2"></i> Attendance History</a>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div class="flex-grow-1">
-
-      <!-- NAVBAR -->
-      <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm border-bottom">
-        <div class="container-fluid">
-
-          <!-- MOBILE TOGGLE BUTTON -->
-          <button class="btn btn-light d-md-none me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
-            <i class="bi bi-list"></i>
-          </button>
-
-          <div class="ms-auto dropdown">
-            <button class="btn btn-light dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown">
-              <i class="bi bi-person-circle me-2"></i> Staff
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end shadow">
-              <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#profileModal"><i class="bi bi-person me-2"></i> Profile</button></li>
-              <li><button class="dropdown-item" data-bs-toggle="modal" data-bs-target="#changePasswordModal"><i class="bi bi-key me-2"></i> Change Password</button></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item text-danger" href="index.html"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
-            </ul>
-          </div>
-
-        </div>
+  <div class="container-fluid pt-5 mt-3">
+    <div class="row">
+      <!-- SIDEBAR (desktop) -->
+      <nav class="d-none d-md-block col-auto bg-white border-end sidebar p-3">
+        <h6 class="sidebar-heading px-3 mt-2 mb-1 text-muted text-uppercase small">Staff Menu</h6>
+        <ul class="nav flex-column mb-auto">
+          <li class="nav-item"><a href="#dashboard" class="sidebar-link active"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+          <li class="nav-item"><a href="#checkin" class="sidebar-link"><i class="bi bi-clock me-2"></i> Time In / Out</a></li>
+          <li class="nav-item"><a href="#history" class="sidebar-link"><i class="bi bi-clock-history me-2"></i> History</a></li>
+        </ul>
       </nav>
 
-      <!-- CONTENT -->
-      <div class="p-4">
+      <!-- OFFCANVAS SIDEBAR (mobile) -->
+      <div class="offcanvas offcanvas-start" tabindex="-1" id="mobileSidebar">
+        <div class="offcanvas-header border-bottom">
+          <h5 class="offcanvas-title text-success fw-bold">Attendance System</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+          <h6 class="sidebar-heading px-3 mt-2 mb-1 text-muted text-uppercase small">Staff Menu</h6>
+          <ul class="nav flex-column mb-auto">
+            <li class="nav-item"><a href="#dashboard" class="sidebar-link active" data-bs-dismiss="offcanvas"><i class="bi bi-speedometer2 me-2"></i> Dashboard</a></li>
+            <li class="nav-item"><a href="#checkin" class="sidebar-link" data-bs-dismiss="offcanvas"><i class="bi bi-clock me-2"></i> Time In / Out</a></li>
+            <li class="nav-item"><a href="#history" class="sidebar-link" data-bs-dismiss="offcanvas"><i class="bi bi-clock-history me-2"></i> History</a></li>
+          </ul>
+        </div>
+      </div>
 
-        <!-- DASHBOARD SECTION -->
+      <!-- MAIN CONTENT -->
+      <main class="col px-md-4 py-4 animate-fade-up">
+        
+        <!-- DASHBOARD -->
         <section id="dashboard" class="mb-5">
-          <h4 class="mb-4 fw-bold text-secondary">Dashboard</h4>
-          <div class="card shadow-sm rounded-4 p-3 text-center">
-            <p class="mb-0">Welcome to your staff dashboard!</p>
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <h1 class="h3 fw-bold">Dashboard</h1>
+          </div>
+          <div class="card border-0 shadow-sm text-center py-4">
+            <div class="card-body">
+              <h5 class="card-title fw-bold text-success mb-2">Welcome back, Staff!</h5>
+              <p class="card-text text-muted mb-0">Here is your attendance overview for today.</p>
+            </div>
           </div>
         </section>
 
         <!-- TIME IN / TIME OUT -->
         <section id="checkin" class="mb-5">
-          <h4 class="mb-4 fw-bold text-secondary">Time In / Time Out</h4>
-          <div class="card shadow-sm rounded-4">
-            <div class="card-body d-flex gap-3 justify-content-center flex-wrap">
-              <button class="btn btn-success btn-lg rounded-pill fw-semibold flex-fill">Time In</button>
-              <button class="btn btn-danger btn-lg rounded-pill fw-semibold flex-fill">Time Out</button>
+          <h4 class="mb-3 fw-bold">Time In / Time Out</h4>
+          <div class="card border-0 shadow-sm">
+            <div class="card-body p-4 p-md-5">
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <button class="btn btn-success btn-lg w-100 py-3 shadow-sm"><i class="bi bi-box-arrow-in-right me-2"></i> Time In</button>
+                </div>
+                <div class="col-12 col-md-6">
+                  <button class="btn btn-outline-danger btn-lg w-100 py-3"><i class="bi bi-box-arrow-left me-2"></i> Time Out</button>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <!-- ATTENDANCE HISTORY -->
+        <!-- HISTORY -->
         <section id="history" class="mb-5">
-          <h4 class="mb-4 fw-bold text-secondary">Attendance History</h4>
-          <div class="card shadow-sm rounded-4 bg-white">
-            <div class="card-body p-3">
+          <h4 class="mb-3 fw-bold">Attendance History</h4>
+          <div class="card border-0 shadow-sm overflow-hidden">
+            <div class="card-body p-0">
               <div class="table-responsive">
-                <table class="table table-hover table-striped table-bordered mb-0 align-middle text-center">
-                  <thead>
+                <table class="table table-hover align-middle text-center mb-0">
+                  <thead class="table-light text-muted small text-uppercase">
                     <tr>
-                      <th class="fw-semibold bg-success text-white">Date</th>
-                      <th class="fw-semibold bg-success text-white">Time In</th>
-                      <th class="fw-semibold bg-success text-white">Time Out</th>
-                      <th class="fw-semibold bg-success text-white">Status</th>
+                      <th>Date</th>
+                      <th>Time In</th>
+                      <th>Time Out</th>
+                      <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td>March 10</td>
-                      <td>08:30 AM</td>
-                      <td>05:05 PM</td>
-                      <td><span class="badge bg-success rounded-pill"><i class="bi bi-check-circle me-1"></i>Present</span></td>
+                      <td class="fw-medium">March 10</td>
+                      <td class="text-secondary">08:30 AM</td>
+                      <td class="text-secondary">05:05 PM</td>
+                      <td><span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1"><i class="bi bi-check-circle me-1"></i>Present</span></td>
                     </tr>
                     <tr>
-                      <td>March 9</td>
-                      <td>08:55 AM</td>
-                      <td>05:02 PM</td>
-                      <td><span class="badge bg-warning text-dark rounded-pill"><i class="bi bi-exclamation-circle me-1"></i>Late</span></td>
+                      <td class="fw-medium">March 9</td>
+                      <td class="text-secondary">08:55 AM</td>
+                      <td class="text-secondary">05:02 PM</td>
+                      <td><span class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 px-2 py-1"><i class="bi bi-exclamation-circle me-1"></i>Late</span></td>
                     </tr>
                     <tr>
-                      <td>March 8</td>
-                      <td>—</td>
-                      <td>—</td>
-                      <td><span class="badge bg-danger rounded-pill"><i class="bi bi-x-circle me-1"></i>Absent</span></td>
+                      <td class="fw-medium">March 8</td>
+                      <td class="text-secondary">—</td>
+                      <td class="text-secondary">—</td>
+                      <td><span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1"><i class="bi bi-x-circle me-1"></i>Absent</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -160,61 +141,60 @@
             </div>
           </div>
         </section>
-
-      </div>
+      </main>
     </div>
   </div>
 
   <!-- MODALS -->
-  <div class="modal fade" id="profileModal">
-    <div class="modal-dialog">
-      <div class="modal-content rounded-4 shadow-sm">
-        <div class="modal-header">
+  <div class="modal fade" id="profileModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-bottom">
           <h5 class="modal-title fw-bold">My Profile</h5>
-          <button class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <form class="row g-3">
             <div class="col-12">
-              <label class="form-label fw-semibold">Name</label>
-              <input class="form-control rounded-pill" placeholder="Enter your name" />
+              <label class="form-label fw-semibold text-muted small text-uppercase">Name</label>
+              <input class="form-control focus-ring focus-ring-success" placeholder="Enter your name" value="Staff Member" />
             </div>
             <div class="col-12">
-              <label class="form-label fw-semibold">Email</label>
-              <input class="form-control rounded-pill" placeholder="Enter your email" />
+              <label class="form-label fw-semibold text-muted small text-uppercase">Email</label>
+              <input class="form-control focus-ring focus-ring-success" placeholder="Enter your email" value="staff@company.com" />
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Close</button>
-          <button class="btn btn-primary rounded-pill">Save Changes</button>
+          <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success">Save Changes</button>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="modal fade" id="changePasswordModal">
-    <div class="modal-dialog">
-      <div class="modal-content rounded-4 shadow-sm">
-        <div class="modal-header">
+  <div class="modal fade" id="changePasswordModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content border-0 shadow">
+        <div class="modal-header border-bottom">
           <h5 class="modal-title fw-bold">Change Password</h5>
-          <button class="btn-close" data-bs-dismiss="modal"></button>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
           <form class="row g-3">
             <div class="col-12">
-              <label class="form-label fw-semibold">New Password</label>
-              <input type="password" class="form-control rounded-pill" placeholder="Enter new password" />
+              <label class="form-label fw-semibold text-muted small text-uppercase">New Password</label>
+              <input type="password" class="form-control focus-ring focus-ring-success" placeholder="Enter new password" />
             </div>
             <div class="col-12">
-              <label class="form-label fw-semibold">Confirm New Password</label>
-              <input type="password" class="form-control rounded-pill" placeholder="Confirm new password" />
+              <label class="form-label fw-semibold text-muted small text-uppercase">Confirm New Password</label>
+              <input type="password" class="form-control focus-ring focus-ring-success" placeholder="Confirm new password" />
             </div>
           </form>
         </div>
         <div class="modal-footer">
-          <button class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary rounded-pill">Update Password</button>
+          <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success">Update Password</button>
         </div>
       </div>
     </div>

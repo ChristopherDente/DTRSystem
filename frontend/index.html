@@ -1,50 +1,318 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Attendance System - Login</title>
+  <title>Attendance System - Smart Attendance Management</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="assets/css/styles.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .hero-section {
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+      padding: 100px 0;
+    }
+
+    .feature-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .step-icon {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background-color: #e8f5e9;
+      color: #198754;
+      font-size: 1.5rem;
+      margin: 0 auto 15px;
+    }
+  </style>
 </head>
 
-<body class="d-flex align-items-center justify-content-center vh-100" style="background: linear-gradient(135deg, #04AA6D, #66bb6a);">
+<body>
 
-  <div class="card shadow-lg p-4 p-md-5 rounded-4" style="max-width: 400px; width: 100%;">
-    <h3 class="text-center text-success fw-bold mb-4">Attendance System</h3>
-
-    <form action="account.html" method="post">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-person"></i></span>
-          <input type="text" id="username" name="username" class="form-control" placeholder="Enter username" required>
+  <!-- Header / Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand text-success fw-bold flex-grow-1" href="#"><i
+          class="bi bi-clock-history me-2"></i>AttendancePro</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto fw-medium">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#how-it-works">How It Works</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <div class="ms-lg-3 mt-3 mt-lg-0">
+          <a href="login.html" class="btn btn-outline-success me-2 rounded-pill">Login</a>
+          <a href="login.html" class="btn btn-success shadow-sm rounded-pill">Get Started</a>
         </div>
       </div>
+    </div>
+  </nav>
 
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <div class="input-group">
-          <span class="input-group-text"><i class="bi bi-lock"></i></span>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Enter password" required>
+  <!-- Hero Section -->
+  <section id="home" class="hero-section text-center text-md-start">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0 animate-fade-up">
+          <h1 class="display-4 fw-bold text-dark mb-4">Smart Attendance Management Made Easy</h1>
+          <p class="lead text-muted mb-4">Streamline your workforce tracking with real-time analytics, seamless
+            check-ins, and accurate reporting—all in one place.</p>
+          <a href="login.html" class="btn btn-success btn-lg px-4 me-md-2 shadow-sm rounded-pill">Get Started</a>
+          <a href="#features" class="btn btn-outline-success btn-lg px-4 rounded-pill">Learn More</a>
+        </div>
+        <div class="col-lg-6 text-center animate-fade-up" style="animation-delay: 0.2s;">
+          <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=600&auto=format&fit=crop"
+            alt="Dashboard Preview" class="img-fluid rounded-4 shadow-lg border border-white border-4"
+            style="max-height: 400px; object-fit: cover;">
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="remember" name="remember">
-        <label class="form-check-label" for="remember">Remember me</label>
+  <!-- Features Section -->
+  <section id="features" class="py-5 bg-white">
+    <div class="container py-5">
+      <div class="text-center mb-5 animate-fade-up">
+        <h2 class="fw-bold">Powerful Features</h2>
+        <p class="text-muted">Everything you need to manage attendance efficiently.</p>
       </div>
+      <div class="row g-4">
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm feature-card p-4 text-center">
+            <div class="text-success fs-1 mb-3"><i class="bi bi-stopwatch"></i></div>
+            <h5 class="fw-bold">Real-time Tracking</h5>
+            <p class="text-muted small mb-0">Monitor employee presence instantly with live dashboard updates.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm feature-card p-4 text-center">
+            <div class="text-success fs-1 mb-3"><i class="bi bi-person-check"></i></div>
+            <h5 class="fw-bold">Easy Check-in/out</h5>
+            <p class="text-muted small mb-0">Simple, single-click clock-ins for staff, minimizing friction.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm feature-card p-4 text-center">
+            <div class="text-success fs-1 mb-3"><i class="bi bi-graph-up"></i></div>
+            <h5 class="fw-bold">Reports & Analytics</h5>
+            <p class="text-muted small mb-0">Generate detailed, exportable reports for payroll and insights.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="card h-100 border-0 shadow-sm feature-card p-4 text-center">
+            <div class="text-success fs-1 mb-3"><i class="bi bi-phone"></i></div>
+            <h5 class="fw-bold">Mobile & Web</h5>
+            <p class="text-muted small mb-0">Access the system from anywhere, fully responsive on all devices.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      <button type="submit" class="btn btn-success w-100 btn-lg">Login</button>
-    </form>
+  <!-- How It Works Section -->
+  <section id="how-it-works" class="py-5 bg-light">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">How It Works</h2>
+        <p class="text-muted">Four simple steps to perfect attendance records.</p>
+      </div>
+      <div class="row text-center g-4">
+        <div class="col-sm-6 col-lg-3">
+          <div class="step-icon shadow-sm"><i class="bi bi-box-arrow-in-right"></i></div>
+          <h5 class="fw-bold">1. Sign In</h5>
+          <p class="text-muted small">Employees log in securely to their accounts.</p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="step-icon shadow-sm"><i class="bi bi-check2-circle"></i></div>
+          <h5 class="fw-bold">2. Track Attendance</h5>
+          <p class="text-muted small">One-click check-ins record precise timestamps.</p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="step-icon shadow-sm"><i class="bi bi-file-earmark-text"></i></div>
+          <h5 class="fw-bold">3. Generate Reports</h5>
+          <p class="text-muted small">Admins pull clean, sorted data for records.</p>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="step-icon shadow-sm"><i class="bi bi-pie-chart"></i></div>
+          <h5 class="fw-bold">4. Analyze Data</h5>
+          <p class="text-muted small">Identify trends like tardiness or absences easily.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <p class="mt-3 text-center">
-      Don't have an account? <a href="register.html" class="text-success">Register</a>
-    </p>
-  </div>
+  <!-- Testimonials -->
+  <section id="testimonials" class="py-5 bg-light">
+    <div class="container py-5">
+      <div class="text-center mb-5">
+        <h2 class="fw-bold">What Our Clients Say</h2>
+        <p class="text-muted">Trusted by businesses everywhere.</p>
+      </div>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner shadow-sm bg-white rounded-4 p-5 text-center mx-auto feature-card"
+          style="max-width: 800px;">
+          <div class="carousel-item active">
+            <i class="bi bi-quote fs-1 text-success opacity-50 mb-3"></i>
+            <p class="fs-5 fst-italic mb-4">"AttendancePro completely changed how we track our remote team. The setup
+              was instant and reports save our HR weekly hours."</p>
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="bg-success text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                style="width:50px; height:50px;"><i class="bi bi-person fs-3"></i></div>
+              <div class="text-start">
+                <h6 class="fw-bold mb-0">Sarah Jenkins</h6>
+                <small class="text-muted">HR Director, TechFlow</small>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <i class="bi bi-quote fs-1 text-success opacity-50 mb-3"></i>
+            <p class="fs-5 fst-italic mb-4">"The interface is so clean and simple. Even our least tech-savvy employees
+              had zero issues checking in on day one."</p>
+            <div class="d-flex align-items-center justify-content-center">
+              <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center me-3"
+                style="width:50px; height:50px;"><i class="bi bi-person fs-3"></i></div>
+              <div class="text-start">
+                <h6 class="fw-bold mb-0">Marcus Liu</h6>
+                <small class="text-muted">Operations Manager, BlueBox</small>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev"
+          style="filter: invert(1);">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next"
+          style="filter: invert(1);">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-5 bg-white">
+    <div class="container py-5">
+      <div class="row g-5">
+        <div class="col-lg-6 mb-4 mb-lg-0">
+          <h2 class="fw-bold mb-4">Get in Touch</h2>
+          <p class="text-muted mb-5">Have questions about our enterprise plans or need a custom integration? Send us a
+            message and our team will get back to you shortly.</p>
+          <ul class="list-unstyled text-muted">
+            <li class="mb-4 d-flex align-items-center"><i class="bi bi-geo-alt-fill text-success fs-4 me-3"></i> 123
+              Tech Square, Suite 400, SF, CA</li>
+            <li class="mb-4 d-flex align-items-center"><i class="bi bi-envelope-fill text-success fs-4 me-3"></i>
+              contact@attendancepro.com</li>
+            <li class="mb-4 d-flex align-items-center"><i class="bi bi-telephone-fill text-success fs-4 me-3"></i> +1
+              (555) 123-4567</li>
+          </ul>
+        </div>
+        <div class="col-lg-6">
+          <div class="card border-0 shadow-sm p-4 p-md-5 rounded-4 feature-card">
+            <form>
+              <div class="mb-3">
+                <label for="name" class="form-label fw-semibold small">Full Name</label>
+                <input type="text" class="form-control focus-ring focus-ring-success" id="name" placeholder="John Doe">
+              </div>
+              <div class="mb-3">
+                <label for="email" class="form-label fw-semibold small">Email Address</label>
+                <input type="email" class="form-control focus-ring focus-ring-success" id="email"
+                  placeholder="name@example.com">
+              </div>
+              <div class="mb-4">
+                <label for="message" class="form-label fw-semibold small">Message</label>
+                <textarea class="form-control focus-ring focus-ring-success" id="message" rows="4"
+                  placeholder="How can we help you?"></textarea>
+              </div>
+              <button type="submit" class="btn btn-success w-100 py-3 fw-medium shadow-sm rounded-pill">Send
+                Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row g-4 mb-4">
+        <div class="col-md-6 col-lg-4">
+          <h5 class="fw-bold text-success mb-3"><i class="bi bi-clock-history me-2"></i>AttendancePro</h5>
+          <p class="text-secondary small">Smart attendance tracking solutions designed for modern teams. Secure, fast,
+            and reliable.</p>
+        </div>
+        <div class="col-md-6 col-lg-2 offset-lg-2">
+          <h6 class="fw-bold mb-3">Links</h6>
+          <ul class="list-unstyled small text-secondary">
+            <li class="mb-2"><a href="#features"
+                class="text-decoration-none text-secondary custom-footer-link">Features</a></li>
+            <li class="mb-2"><a href="#pricing"
+                class="text-decoration-none text-secondary custom-footer-link">Pricing</a></li>
+            <li class="mb-2"><a href="#contact"
+                class="text-decoration-none text-secondary custom-footer-link">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-2">
+          <h6 class="fw-bold mb-3">Legal</h6>
+          <ul class="list-unstyled small text-secondary">
+            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary custom-footer-link">Privacy
+                Policy</a></li>
+            <li class="mb-2"><a href="#" class="text-decoration-none text-secondary custom-footer-link">Terms of
+                Service</a></li>
+          </ul>
+        </div>
+        <div class="col-md-6 col-lg-2">
+          <h6 class="fw-bold mb-3">Social</h6>
+          <div class="d-flex gap-3">
+            <a href="#"
+              class="text-white bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center feature-card"
+              style="width:40px;height:40px;"><i class="bi bi-twitter-x"></i></a>
+            <a href="#"
+              class="text-white bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center feature-card"
+              style="width:40px;height:40px;"><i class="bi bi-linkedin"></i></a>
+            <a href="#"
+              class="text-white bg-secondary bg-opacity-25 rounded-circle d-flex align-items-center justify-content-center feature-card"
+              style="width:40px;height:40px;"><i class="bi bi-github"></i></a>
+          </div>
+        </div>
+      </div>
+      <div class="border-top border-secondary opacity-25 pt-4 text-center">
+        <small class="text-light">&copy; 2026 AttendancePro. All rights reserved.</small>
+      </div>
+    </div>
+  </footer>
+
+  <style>
+    .custom-footer-link:hover {
+      color: #198754 !important;
+    }
+  </style>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
